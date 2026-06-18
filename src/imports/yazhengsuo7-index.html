@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚整所 | 国际高端医疗美容</title>
+    <style>
+        /* 基础重置与变量设置 */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #2A2A2A;
+            --gold-color: #D4AF37;
+            --text-white: #FFFFFF;
+            --text-gray: #B0B0B0;
+        }
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Noto Serif SC', 'Times New Roman', serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        a { text-decoration: none; color: inherit; }
+        
+        /* 导航栏 */
+        header {
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; box-sizing: border-box;
+            background: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .logo { font-size: 24px; font-weight: bold; color: var(--gold-color); letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 40px; margin: 0; }
+        nav a { font-size: 14px; letter-spacing: 1px; transition: color 0.4s ease; }
+        nav a:hover { color: var(--gold-color); }
+
+        /* 首屏视觉 (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            /* 此处可替换为高端模特或光影质感背景图 */
+            background: linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.7)), url('https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 300; letter-spacing: 5px; }
+        .hero p { font-size: 16px; color: var(--text-gray); margin-bottom: 40px; letter-spacing: 2px; }
+        .btn-gold {
+            padding: 15px 40px; border: 1px solid var(--gold-color);
+            background: transparent; color: var(--gold-color);
+            font-size: 14px; letter-spacing: 2px; cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .btn-gold:hover {
+            background: var(--gold-color); color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* 内容区块 */
+        .section { padding: 100px 50px; text-align: center; }
+        .section-title { font-size: 32px; color: var(--gold-color); margin-bottom: 15px; }
+        .section-subtitle { font-size: 14px; color: var(--text-gray); margin-bottom: 60px; letter-spacing: 1px; }
+        
+        /* 介绍卡片 */
+        .grid-container {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            max-width: 1200px; margin: 0 auto;
+        }
+        .card {
+            background-color: var(--card-bg); padding: 40px 20px;
+            border-top: 3px solid transparent;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--gold-color); }
+        .card h3 { font-size: 20px; margin-bottom: 15px; }
+        .card p { font-size: 14px; color: var(--text-gray); line-height: 1.8; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">亚整所</div>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">品牌故事</a></li>
+                <li><a href="#">致臻美学</a></li>
+                <li><a href="#">艺术空间</a></li>
+                <li><a href="#">资讯动态</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>重塑岁月 臻致于心</h1>
+        <p>国际化高端医疗美容，为您定制专属时光之美</p>
+        <button class="btn-gold">探索美丽境遇</button>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">品牌哲学</h2>
+        <p class="section-subtitle">融合国际前沿科技与东方美学理念</p>
+        <div class="grid-container">
+            <div class="card">
+                <h3>国际医疗团队</h3>
+                <p>汇聚全球顶级医美专家，以严谨医学态度，保障您的每一次蜕变。</p>
+            </div>
+            <div class="card">
+                <h3>高定美学体系</h3>
+                <p>拒绝千篇一律，基于成熟人群的骨相与轮廓，提供个性化抗衰与轮廓重塑方案。</p>
+            </div>
+            <div class="card">
+                <h3>奢享疗愈空间</h3>
+                <p>私密、静谧的香槟金艺术空间，让您在放松中悦享时光倒流的奇迹。</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

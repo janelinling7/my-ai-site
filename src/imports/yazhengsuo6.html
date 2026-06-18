@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>亚整所 · 医疗美容</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #b5966b;
+      --gold-light: #c9aa7a;
+      --gold-dark: #8a7048;
+      --black: #0a0a0a;
+      --black-soft: #141414;
+      --cream: #f5f1ea;
+      --beige: #ebe4d8;
+      --text: #2a2a2a;
+      --text-light: #777;
+      --white: #fff;
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --radius: 12px;
+      /* 栅格基准 */
+      --grid-mobile: 375px;
+      --grid-tablet: 768px;
+      --grid-pc: 1440px;
+      --gutter: 16px;
+      --page-pad: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "PingFang SC", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a1a;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ===== 布局容器 ===== */
+    .page-wrap {
+      width: 100%;
+      margin: 0 auto;
+      background: var(--cream);
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    /* 手机端 375px */
+    @media (max-width: 767px) {
+      .page-wrap {
+        max-width: var(--grid-mobile);
+      }
+      :root { --page-pad: 16px; --gutter: 12px; }
+    }
+
+    /* 平板 768px */
+    @media (min-width: 768px) and (max-width: 1439px) {
+      .page-wrap {
+        max-width: var(--grid-tablet);
+        box-shadow: 0 0 60px rgba(0,0,0,.3);
+      }
+      :root { --page-pad: 24px; --gutter: 20px; }
+    }
+
+    /* PC 1440px */
+    @media (min-width: 1440px) {
+      .page-wrap {
+        max-width: var(--grid-pc);
+        box-shadow: 0 0 80px rgba(0,0,0,.4);
+      }
+      :root { --page-pad: 48px; --gutter: 24px; }
+    }
+
+    .container {
+      padding-left: var(--page-pad);
+      padding-right: var(--page-pad);
+    }
+
+    /* ===== Header ===== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      padding: 12px var(--page-pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .header-logo img { height: 44px; }
+    }
+
+    @media (min-width: 1440px) {
+      .header-logo img { height: 52px; }
+      .header-nav { display: flex !important; }
+      .header { padding: 16px var(--page-pad); }
+    }
+
+    .header-nav {
+      display: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .header-nav a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: color .2s;
+      cursor: pointer;
+    }
+
+    .header-nav a:hover, .header-nav a.active { color: var(--gold); }
+
+    .header-cta {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--white);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .header-cta:hover { opacity: .9; }
+
+    /* ===== Hero ===== */
+    .hero-section {
+      padding: var(--gutter) var(--page-pad) 0;
+    }
+
+    .hero {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 380px;
+      background: var(--black-soft);
+    }
+
+    @media (min-width: 768px) {
+      .hero { height: 420px; }
+    }
+
+    @media (min-width: 1440px) {
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: var(--gutter);
+        align-items: stretch;
+      }
+      .hero { height: 480px; }
+      .hero-side {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gutter);
+      }
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .6s;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero-slide:nth-child(1) {
+      background-image: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.5)),
+        url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80');
+    }
+    .hero-slide:nth-child(2) {
+      background-image: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.5)),
+        url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&q=80');
+    }
+    .hero-slide:nth-child(3) {
+      background-image: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.5)),
+        url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80');
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 24px;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .hero-overlay h1 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 8px;
+    }
+
+    .hero-overlay p {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 10px 32px;
+      border-radius: 24px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .hero-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .hero-dots span.active {
+      background: var(--gold);
+      transform: scale(1.15);
+    }
+
+    .hero-side-card {
+      display: none;
+      background: var(--black);
+      border-radius: var(--radius);
+      padding: 24px;
+      color: var(--white);
+      flex: 1;
+      justify-content: center;
+    }
+
+    @media (min-width: 1440px) {
+      .hero-side-card { display: flex; flex-direction: column; }
+    }
+
+    .hero-side-card h3 {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero-side-card p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.7);
+    }
+
+    .float-sidebar {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,.95);
+      border-radius: 24px;
+      padding: 4px;
+      box-shadow: var(--shadow);
+    }
+
+    .float-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 6px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 9px;
+      color: var(--text);
+      gap: 3px;
+      border-radius: 16px;
+    }
+
+    .float-btn:hover { background: var(--beige); }
+    .float-btn svg { width: 18px; height: 18px; stroke: var(--gold); }
+
+    /* ===== 核心体验价 ===== */
+    .featured-section {
+      padding: 28px var(--page-pad);
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(18px, 3vw, 24px);
+      color: var(--gold-dark);
+      letter-spacing: 3px;
+      font-weight: 500;
+    }
+
+    .section-head p {
+      font-size: 11px;
+      color: var(--text-light);
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    .section-head .price-note {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--gold-dark);
+      background: var(--beige);
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gutter);
+    }
+
+    /* 平板双列 */
+    @media (min-width: 768px) {
+      .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .featured-grid .featured-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
+    /* PC 三列 */
+    @media (min-width: 1440px) {
+      .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .featured-grid .featured-card:last-child {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
+      }
+    }
+
+    .featured-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      border: 1px solid transparent;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(181,150,107,.2);
+      border-color: var(--gold-light);
+    }
+
+    .featured-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 1440px) {
+      .featured-card img { height: 200px; }
+    }
+
+    .featured-body {
+      padding: 16px;
+    }
+
+    .featured-tag {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--gold-dark);
+      background: var(--beige);
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .featured-body h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .featured-body .desc {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .featured-price {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .price-main {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+
+    .price-main small {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .price-label {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .btn-book {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--white);
+      border: none;
+      border-radius: 24px;
+      font-size: 14px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: opacity .2s;
+    }
+
+    .btn-book:hover { opacity: .88; }
+
+    /* ===== 会员卡片 ===== */
+    .member-card {
+      margin: 0 var(--page-pad) 20px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    @media (min-width: 1440px) {
+      .member-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gutter);
+      }
+      .member-card { margin-bottom: 0; }
+    }
+
+    .member-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .member-top img { height: 28px; }
+
+    .link-btn {
+      font-size: 12px;
+      color: var(--text-light);
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .link-btn:hover { color: var(--gold); }
+
+    .member-stats {
+      font-size: 12px;
+      color: var(--text-light);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--beige);
+      margin-bottom: 12px;
+    }
+
+    .member-stats strong { color: var(--gold-dark); }
+
+    .member-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 16px;
+    }
+
+    .member-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 10px;
+      padding: 1px 8px;
+      border-radius: 8px;
+      margin-left: 6px;
+    }
+
+    .member-balance {
+      display: flex;
+      gap: 32px;
+    }
+
+    .balance-item { cursor: pointer; text-align: center; }
+    .balance-num { font-size: 22px; font-weight: 600; }
+    .balance-label { font-size: 11px; color: var(--text-light); }
+
+    /* ===== 快捷操作 ===== */
+    .quick-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gutter);
+      padding: 0 var(--page-pad) 20px;
+    }
+
+    @media (min-width: 768px) {
+      .quick-actions {
+        flex-direction: row;
+      }
+    }
+
+    .quick-btn {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--beige);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background .15s, border-color .15s;
+    }
+
+    .quick-btn:hover {
+      background: var(--beige);
+      border-color: var(--gold-light);
+    }
+
+    .quick-btn svg { width: 22px; height: 22px; stroke: var(--gold); }
+
+    /* ===== 区块通用 ===== */
+    .section {
+      padding: 0 var(--page-pad) 28px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
+      font-size: 14px;
+      color: var(--text-light);
+      cursor: pointer;
+      padding-bottom: 6px;
+      border-bottom: 2px solid transparent;
+      flex-shrink: 0;
+      transition: all .2s;
+    }
+
+    .tab.active {
+      color: var(--gold-dark);
+      border-bottom-color: var(--gold);
+      font-weight: 500;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gutter);
+    }
+
+    @media (min-width: 768px) {
+      .product-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1440px) {
+      .product-list { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .product-card {
+      display: flex;
+      gap: 12px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .15s;
+    }
+
+    .product-card:hover { transform: translateY(-2px); }
+
+    .product-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      .product-card { flex-direction: column; }
+      .product-img { width: 100%; height: 140px; }
+    }
+
+    .product-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+    .product-title {
+      font-size: 13px;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .price-now {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gold-dark);
+    }
+
+    .price-note-sm {
+      font-size: 10px;
+      color: var(--text-light);
+    }
+
+    .see-more {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px;
+      background: none;
+      border: 1px solid var(--gold-light);
+      border-radius: 24px;
+      color: var(--gold-dark);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .see-more:hover { background: var(--beige); }
+
+    /* ===== 探索 ===== */
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gutter);
+    }
+
+    @media (min-width: 768px) {
+      .explore-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1440px) {
+      .explore-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .explore-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .15s;
+    }
+
+    .explore-item:hover { transform: translateY(-2px); }
+
+    .explore-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .explore-desc {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ===== 活动 Banner ===== */
+    .event-banner {
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      height: 160px;
+      transition: transform .15s;
+    }
+
+    @media (min-width: 1440px) { .event-banner { height: 220px; } }
+
+    .event-banner:hover { transform: scale(1.01); }
+
+    .event-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .event-banner-text {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.65), transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      color: var(--white);
+    }
+
+    .event-banner-text h3 { font-size: 18px; margin-bottom: 6px; }
+    .event-banner-text p { font-size: 13px; opacity: .85; }
+
+    /* ===== 浮动按钮 ===== */
+    .float-gift {
+      position: fixed;
+      right: max(12px, calc(50% - 190px));
+      bottom: 96px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @media (min-width: 768px) {
+      .float-gift { right: max(24px, calc(50% - 380px)); }
+    }
+
+    @media (min-width: 1440px) {
+      .float-gift { right: max(48px, calc(50% - 700px)); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .float-gift-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      font-size: 22px;
+      border: 2px solid var(--gold-light);
+    }
+
+    .float-gift span {
+      font-size: 10px;
+      color: var(--gold-dark);
+      margin-top: 4px;
+      background: var(--white);
+      padding: 2px 8px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== 底部导航（手机/平板） ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--grid-mobile);
+      background: var(--white);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 6px 0 12px;
+      box-shadow: 0 -2px 16px rgba(0,0,0,.08);
+      z-index: 100;
+    }
+
+    @media (min-width: 768px) and (max-width: 1439px) {
+      .bottom-nav { max-width: var(--grid-tablet); }
+    }
+
+    @media (min-width: 1440px) {
+      .bottom-nav { display: none; }
+      .page-wrap { padding-bottom: 40px; }
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-light);
+      font-size: 10px;
+      padding: 4px 10px;
+    }
+
+    .nav-item.active { color: var(--gold-dark); }
+    .nav-item svg { width: 22px; height: 22px; }
+
+    .nav-center { margin-top: -18px; }
+
+    .nav-center-logo {
+      width: 46px;
+      height: 46px;
+      background: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--white);
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      overflow: hidden;
+    }
+
+    .nav-center-logo img { width: 36px; height: auto; }
+
+    /* ===== PC 页脚 ===== */
+    .site-footer {
+      display: none;
+      background: var(--black);
+      color: rgba(255,255,255,.6);
+      padding: 32px var(--page-pad);
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    @media (min-width: 1440px) {
+      .site-footer { display: block; }
+    }
+
+    .site-footer img { height: 40px; margin-bottom: 12px; opacity: .9; }
+
+    /* ===== Toast & Modal ===== */
+    .toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(.9);
+      background: rgba(0,0,0,.82);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 14px;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all .3s;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 200;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    @media (min-width: 768px) {
+      .modal-overlay { align-items: center; }
+    }
+
+    .modal-overlay.show { opacity: 1; pointer-events: auto; }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border-radius: 16px 16px 0 0;
+      padding: 24px 24px 32px;
+      transform: translateY(100%);
+      transition: transform .3s;
+    }
+
+    @media (min-width: 768px) {
+      .modal-sheet { border-radius: 16px; transform: scale(.9); opacity: 0; }
+      .modal-overlay.show .modal-sheet { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-overlay.show .modal-sheet { transform: translateY(0); }
+
+    @media (min-width: 768px) {
+      .modal-overlay.show .modal-sheet { transform: scale(1); }
+    }
+
+    .modal-handle {
+      width: 36px;
+      height: 4px;
+      background: #ddd;
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+
+    @media (min-width: 768px) { .modal-handle { display: none; } }
+
+    .modal-title {
+      font-size: 20px;
+      color: var(--gold-dark);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .modal-price {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .modal-price-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    .modal-body {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-close {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--white);
+      border: none;
+      border-radius: 28px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* 断点指示（demo 用，可删） */
+    .breakpoint-badge {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 300;
+      background: var(--black);
+      color: var(--gold);
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      opacity: .85;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="breakpoint-badge" id="bpBadge">Mobile · 375px</div>
+
+  <div class="page-wrap" id="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-logo">
+        <img src="logo-yazhengsuo.png" alt="亚整所 医疗美容" />
+      </div>
+      <nav class="header-nav" id="headerNav">
+        <a data-action="首页" class="active">首页</a>
+        <a data-action="医美项目">医美项目</a>
+        <a data-action="预约护理">预约</a>
+        <a data-action="了解我们">关于</a>
+      </nav>
+      <button class="header-cta" data-action="预约护理">立即预约</button>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-section container">
+      <div class="hero-grid">
+        <div class="hero" id="hero">
+          <div class="hero-slide active"></div>
+          <div class="hero-slide"></div>
+          <div class="hero-slide"></div>
+          <div class="hero-overlay">
+            <h1>科技焕颜 · 匠心医美</h1>
+            <p>— YAZHENGSUO MEDICAL BEAUTY —</p>
+            <button class="hero-cta" data-action="品牌活动">品牌活动 ›</button>
+          </div>
+          <div class="hero-dots" id="heroDots">
+            <span class="active" data-index="0"></span>
+            <span data-index="1"></span>
+            <span data-index="2"></span>
+          </div>
+          <div class="float-sidebar">
+            <button class="float-btn" data-action="查评价">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              查评价
+            </button>
+            <button class="float-btn" data-action="新客礼">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8V21M3 12h18"/></svg>
+              新客礼
+            </button>
+            <button class="float-btn" data-action="联系客服">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              联系客服
+            </button>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-side-card">
+            <h3>亚整所 · 医疗美容</h3>
+            <p>专注科技抗衰、精准淡斑、眼部年轻化。<br/>以医学标准，定制您的焕颜方案。<br/>单部位体验价透明公开，安心到店。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心医美体验价 -->
+    <section class="featured-section" id="medical">
+      <div class="section-head">
+        <h2>医美体验项目</h2>
+        <p>MEDICAL AESTHETIC EXPERIENCE</p>
+        <span class="price-note">以下均为单部位体验价</span>
+      </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </section>
+
+    <!-- 会员区 -->
+    <div class="member-row container">
+      <section class="member-card">
+        <div class="member-top">
+          <img src="logo-yazhengsuo.png" alt="亚整所" />
+          <button class="link-btn" data-action="了解我们">了解我们 ›</button>
+        </div>
+        <div class="member-stats">累计服务 <strong>128,600+</strong> 位求美者</div>
+        <div class="member-profile">
+          <div class="avatar">亚</div>
+          <div>
+            <span>尊贵会员</span>
+            <span class="member-badge">V3</span>
+          </div>
+        </div>
+        <div class="member-balance">
+          <div class="balance-item" data-action="优惠券">
+            <div class="balance-num">0</div>
+            <div class="balance-label">优惠券</div>
+          </div>
+          <div class="balance-item" data-action="积分">
+            <div class="balance-num">0</div>
+            <div class="balance-label">积分</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 快捷操作 -->
+    <div class="quick-actions">
+      <button class="quick-btn" data-action="门店查询">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        门店查询
+      </button>
+      <button class="quick-btn" data-action="预约护理">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        预约护理
+      </button>
+    </div>
+
+    <!-- 最新活动 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>最新活动</h2>
+        <p>LATEST EVENTS</p>
+      </div>
+      <div class="event-banner" data-action="体验活动">
+        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc2360?w=1200&q=80" alt="活动" />
+        <div class="event-banner-text">
+          <h3>新客专享体验</h3>
+          <p>三大医美项目 · 单部位体验价限时开放 ›</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 热门项目 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>热门项目</h2>
+        <p>POPULAR TREATMENTS</p>
+      </div>
+      <div class="tabs" id="tabs">
+        <span class="tab active" data-cat="medical">医美精选</span>
+        <span class="tab" data-cat="hydrate">面部补水</span>
+        <span class="tab" data-cat="whiten">美白提亮</span>
+        <span class="tab" data-cat="body">身体护理</span>
+      </div>
+      <div class="product-list" id="productList"></div>
+      <button class="see-more" data-action="查看更多项目">查看更多 ›</button>
+    </section>
+
+    <!-- 探索更多 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>探索更多</h2>
+        <p>EXPLORE MORE</p>
+      </div>
+      <div class="explore-grid">
+        <div class="explore-item" data-action="科技抗衰">
+          <div class="explore-logo">科技抗衰</div>
+          <div class="explore-desc">射频 · 超声 · 光电联合<br/>分层紧致，重塑年轻轮廓</div>
+        </div>
+        <div class="explore-item" data-action="精准护肤">
+          <div class="explore-logo">精准护肤</div>
+          <div class="explore-desc">医学级检测 · 定制方案<br/>科学管理您的肌肤状态</div>
+        </div>
+        <div class="explore-item" data-action="眼部年轻化">
+          <div class="explore-logo">眼部年轻化</div>
+          <div class="explore-desc">改善眼袋 · 淡化细纹<br/>还原明亮双眸</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="float-gift" data-action="进店有礼">
+      <div class="float-gift-icon">🎁</div>
+      <span>进店有礼</span>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav" id="bottomNav">
+      <button class="nav-item active" data-nav="首页">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        首页
+      </button>
+      <button class="nav-item" data-nav="预约">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        预约
+      </button>
+      <button class="nav-item nav-center" data-nav="品牌">
+        <div class="nav-center-logo">
+          <img src="logo-yazhengsuo.png" alt="" />
+        </div>
+      </button>
+      <button class="nav-item" data-nav="权益">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        权益
+      </button>
+      <button class="nav-item" data-nav="我的">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        我的
+      </button>
+    </nav>
+
+    <footer class="site-footer">
+      <img src="logo-yazhengsuo.png" alt="亚整所" />
+      <p>亚整所 · 医疗美容 &nbsp;|&nbsp; 科技焕颜 · 匠心医美</p>
+      <p style="margin-top:8px;opacity:.5;">© 2026 Yazhengsuo Medical Beauty. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal-overlay" id="modal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice" style="display:none"></div>
+      <div class="modal-price-note" id="modalPriceNote" style="display:none">单部位体验价</div>
+      <div class="modal-body" id="modalBody"></div>
+      <button class="modal-close" id="modalClose">立即预约体验</button>
+    </div>
+  </div>
+
+  <script>
+    /* ===== 固定体验价（不可更改） ===== */
+    const FIXED_PRICES = Object.freeze({
+      '脸部科技抗衰': 368,
+      '科技淡斑': 308,
+      '改善眼袋': 468
+    });
+
+    const featuredProjects = [
+      {
+        key: '脸部科技抗衰',
+        title: '脸部科技抗衰',
+        desc: '射频+光电联合，分层紧致提拉，改善松弛与细纹',
+        img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80',
+        tag: '抗衰'
+      },
+      {
+        key: '科技淡斑',
+        title: '科技淡斑',
+        desc: '靶向淡化色斑沉积，均匀肤色，还原透亮肌底',
+        img: 'https://images.unsplash.com/photo-1596755389378-c965d796a191?w=600&q=80',
+        tag: '淡斑'
+      },
+      {
+        key: '改善眼袋',
+        title: '改善眼袋',
+        desc: '精准作用于眼周区域，改善眼袋浮肿，明亮双眸',
+        img: 'https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=600&q=80',
+        tag: '眼袋'
+      }
+    ];
+
+    const products = {
+      medical: featuredProjects.map(p => ({
+        title: p.title,
+        price: FIXED_PRICES[p.key],
+        fixed: true,
+        img: p.img
+      })),
+      hydrate: [
+        { title: '玻尿酸深层补水 面部护理', price: 680, img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&q=80' },
+        { title: '水光焕活 密集补水疗程', price: 1980, img: 'https://images.unsplash.com/photo-1570554886111-e80f9596dd24?w=200&q=80' },
+      ],
+      whiten: [
+        { title: '美白提亮 光子嫩肤体验', price: 880, img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&q=80' },
+        { title: 'VC亮肤 焕亮护理套餐', price: 1580, img: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=200&q=80' },
+      ],
+      body: [
+        { title: '全身SPA 舒缓放松护理', price: 580, img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=200&q=80' },
+        { title: '纤体塑形 局部护理疗程', price: 1280, img: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=200&q=80' },
+      ],
+    };
+
+    const modalContent = {
+      '脸部科技抗衰': {
+        title: '脸部科技抗衰',
+        price: FIXED_PRICES['脸部科技抗衰'],
+        body: '采用射频与光电联合技术，分层作用于真皮层<br/>改善面部松弛、细纹，重塑紧致轮廓<br/>· 单次约60分钟 · 无创舒适'
+      },
+      '科技淡斑': {
+        title: '科技淡斑',
+        price: FIXED_PRICES['科技淡斑'],
+        body: '靶向淡化色斑与色沉，均匀整体肤色<br/>医学级检测后定制能量参数<br/>· 单次约45分钟 · 恢复期短'
+      },
+      '改善眼袋': {
+        title: '改善眼袋',
+        price: FIXED_PRICES['改善眼袋'],
+        body: '精准改善眼周眼袋与浮肿问题<br/>促进局部循环，明亮双眸<br/>· 单次约40分钟 · 即做即走'
+      },
+      '品牌活动': { title: '品牌活动', body: '亚整所春季焕颜季<br/>三大体验项目开放预约中' },
+      '查评价': { title: '查评价', body: '查看真实求美者评价<br/>为您推荐最适合的方案' },
+      '新客礼': { title: '新客礼遇', body: '🎁 首次到店咨询赠精美礼品<br/>体验项目需提前预约' },
+      '联系客服': { title: '联系客服', body: '在线客服 9:00 - 21:00<br/>电话：400-666-8888' },
+      '了解我们': { title: '了解我们', body: '亚整所 · 医疗美容<br/>专注科技医美，以医学标准定制焕颜方案' },
+      '优惠券': { title: '我的优惠券', body: '暂无可用优惠券' },
+      '积分': { title: '我的积分', body: '当前积分：0' },
+      '门店查询': { title: '门店查询', body: '正在定位附近门店…<br/>距您最近：亚整所（旗舰店）1.5km' },
+      '预约护理': { title: '预约护理', body: '请选择预约时间和服务项目<br/>今日可预约：14:00 / 16:00 / 18:00' },
+      '体验活动': { title: '新客专享体验', body: '三大医美项目单部位体验价开放中<br/>名额有限，先到先得' },
+      '查看更多项目': { title: '更多项目', body: '正在加载更多项目…' },
+      '科技抗衰': { title: '科技抗衰', body: '射频 · 超声 · 光电联合方案' },
+      '精准护肤': { title: '精准护肤', body: '医学级肌肤检测 + 定制护理' },
+      '眼部年轻化': { title: '眼部年轻化', body: '改善眼袋 · 淡化细纹 · 明亮双眸' },
+      '进店有礼': { title: '进店有礼', body: '🎁 到店即赠精美小样一份' },
+      '首页': { title: '首页', body: '您已在首页' },
+      '预约': { title: '预约', body: '跳转至预约页面…' },
+      '品牌': { title: '亚整所', body: '亚整所 · 医疗美容<br/>科技焕颜 · 匠心医美' },
+      '权益': { title: '会员权益', body: '查看您的专属会员权益' },
+      '我的': { title: '我的', body: '个人中心 · 订单 · 设置' },
+      '医美项目': { title: '医美项目', body: '查看三大体验项目详情' },
+    };
+
+    const toast = document.getElementById('toast');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalPriceNote = document.getElementById('modalPriceNote');
+    let toastTimer;
+
+    function showToast(msg) {
+      clearTimeout(toastTimer);
+      toast.textContent = msg;
+      toast.classList.add('show');
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    function showModal(key) {
+      const content = modalContent[key];
+      if (!content) { showToast('点击：' + key); return; }
+      modalTitle.textContent = content.title;
+      modalBody.innerHTML = content.body;
+      if (content.price != null) {
+        modalPrice.style.display = 'block';
+        modalPrice.textContent = '¥' + content.price;
+        modalPriceNote.style.display = 'block';
+      } else {
+        modalPrice.style.display = 'none';
+        modalPriceNote.style.display = 'none';
+      }
+      modal.classList.add('show');
+    }
+
+    function closeModal() { modal.classList.remove('show'); }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    function renderFeatured() {
+      document.getElementById('featuredGrid').innerHTML = featuredProjects.map(p => {
+        const price = FIXED_PRICES[p.key];
+        return `
+          <article class="featured-card" data-action="${p.key}">
+            <img src="${p.img}" alt="${p.title}" />
+            <div class="featured-body">
+              <span class="featured-tag">${p.tag} · 单部位体验</span>
+              <h3>${p.title}</h3>
+              <p class="desc">${p.desc}</p>
+              <div class="featured-price">
+                <span class="price-main"><small>¥</small>${price}</span>
+                <span class="price-label">单部位体验价</span>
+              </div>
+              <button class="btn-book" data-action="${p.key}">立即预约</button>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    function renderProducts(cat) {
+      const list = products[cat] || products.medical;
+      document.getElementById('productList').innerHTML = list.map(p => `
+        <div class="product-card" data-action="${p.fixed ? p.title : 'product'}" data-title="${p.title}">
+          <img class="product-img" src="${p.img}" alt="" />
+          <div class="product-info">
+            <div class="product-title">${p.title}</div>
+            <div>
+              <span class="price-now">¥${p.price}</span>
+              ${p.fixed ? '<div class="price-note-sm">单部位体验价</div>' : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderFeatured();
+    renderProducts('medical');
+
+    document.getElementById('tabs').addEventListener('click', e => {
+      const tab = e.target.closest('.tab');
+      if (!tab) return;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderProducts(tab.dataset.cat);
+      showToast('切换至：' + tab.textContent);
+    });
+
+    document.getElementById('app').addEventListener('click', e => {
+      const el = e.target.closest('[data-action]');
+      if (!el) return;
+      e.stopPropagation();
+      const action = el.dataset.action;
+      if (action === 'product') {
+        showModal('预约护理');
+        showToast(el.dataset.title);
+        return;
+      }
+      showModal(action);
+    });
+
+    document.getElementById('headerNav')?.addEventListener('click', e => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      document.querySelectorAll('.header-nav a').forEach(x => x.classList.remove('active'));
+      a.classList.add('active');
+    });
+
+    document.getElementById('bottomNav').addEventListener('click', e => {
+      const item = e.target.closest('.nav-item');
+      if (!item) return;
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+      showModal(item.dataset.nav);
+    });
+
+    /* Hero carousel */
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('#heroDots span');
+
+    function goSlide(i) {
+      currentSlide = i;
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
+
+    dots.forEach(d => d.addEventListener('click', () => goSlide(+d.dataset.index)));
+    setInterval(() => goSlide((currentSlide + 1) % slides.length), 4500);
+
+    const hero = document.getElementById('hero');
+    let startX = 0;
+    hero.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diff) > 50) {
+        goSlide(diff > 0 ? (currentSlide - 1 + slides.length) % slides.length : (currentSlide + 1) % slides.length);
+      }
+    }, { passive: true });
+
+    /* 断点指示 */
+    function updateBreakpoint() {
+      const w = window.innerWidth;
+      const badge = document.getElementById('bpBadge');
+      if (w >= 1440) badge.textContent = 'PC · 1440px 栅格';
+      else if (w >= 768) badge.textContent = 'Tablet · 768px 栅格';
+      else badge.textContent = 'Mobile · 375px 栅格';
+    }
+    updateBreakpoint();
+    window.addEventListener('resize', updateBreakpoint);
+  </script>
+</body>
+</html>
