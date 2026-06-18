@@ -9,7 +9,7 @@ import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import logoImg from '../imports/yazhengsuo-logo.png';
 
 // --- Unsplash Images ---
-const HERO_BG = "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBzcGElMjBmYWNpYWx8ZW58MXx8fHwxNzgxNjg0OTUwfDA&ixlib=rb-4.1.0&q=80&w=1920";
+const HERO_BG = "/images/hero-bg.jpg";
 const SERVICE_1 = "https://images.unsplash.com/photo-1700760933574-9f0f4ea9aa3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXNlciUyMHNraW5jYXJlJTIwY2xpbmljfGVufDF8fHx8MTc4MTY4NDk1MHww&ixlib=rb-4.1.0&q=80&w=1080";
 const SERVICE_2 = "https://images.unsplash.com/photo-1655026392641-bf283a5f12d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxza2luY2FyZSUyMHNlcnVtJTIwZmFjZXxlbnwxfHx8fDE3ODE2ODQ5NTB8MA&ixlib=rb-4.1.0&q=80&w=1080";
 const SERVICE_3 = "https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZXN0aGV0aWMlMjBjbGluaWMlMjBpbnRlcmlvcnxlbnwxfHx8fDE3ODE1MjkxMDl8MA&ixlib=rb-4.1.0&q=80&w=1080";
